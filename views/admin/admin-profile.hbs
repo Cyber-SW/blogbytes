@@ -1,11 +1,25 @@
+<nav>
+
+  <div class="left">Logo</div>
+  <div class="right">
+    <form id="logout-form" action="/admin/profile/logout" method="POST">
+      <button>Logout</button>
+    </form>
+  </div>
+</nav>
+
 {{#if userInSession}}
 
-  <h2>Welcome to Blog.Spot,{{userInSession.username}}</h2>
-  <button>
-    <a href="/admin/profile">Reload the page</a>
-  </button>
+  <h2>Hello Admin,{{userInSession.fullname}}</h2>
 
 {{else}}
   <h2>Still no logged in user,Sorry!</h2>
 
 {{/if}}
+
+{{#each data}}
+
+  <h2><a href="/admin/profile/{{this._id}}">{{this.username}}</a></h2>
+
+  <a href="/admin/profile/delete/{{this._id}}">Delete This Profile</a>
+{{/each}}
