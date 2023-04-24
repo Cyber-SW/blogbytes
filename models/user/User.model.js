@@ -20,10 +20,12 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    blogs: {
+    blog: [
+      {
       type: Schema.Types.ObjectId,
-      ref: "Userblog"
+      ref: "Blog"
     }
+  ]
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`

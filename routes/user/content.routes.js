@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const Topic = require("../../models/user/Topic.model");
 const isLoggedOut = require("../../middleware/user/isLoggedOut");
 const isLoggedIn = require("../../middleware/user/isLoggedIn");
 
@@ -25,7 +26,10 @@ router.get("/explore-blog", isLoggedIn, (req, res, next) => {
 
 //user create routes
 router.get("/create-blog", isLoggedIn, (req, res, next) => {
-    res.render("user-content/create")
+    Topic.find()
+    .then((topicsFromDB)=> {
+        res.render("user-content/create", { topics: topicsFromDB })
+    })
 })
 
 

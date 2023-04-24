@@ -9,12 +9,12 @@ const userBlogSchema = new Schema(
       unique: false,
       trim: true,
     },
-    genre: {
-      type: String,
-      required: true,
-      enum: ["Select Topic", "Mobile", "Software", "Hardware", "Gadgets", "Cybersecurity", "Artificial Intelligence", "Cloud Computing", "Internet of Things", "Data Science", "Programming"],
-      default: "Select Topic"
-    },
+    // topic: {
+    //   type: String,
+    //   required: true,
+    //   enum: ["Select Topic", "Mobile", "Software", "Hardware", "Gadgets", "Cybersecurity", "Artificial Intelligence", "Cloud Computing", "Internet of Things", "Data Science", "Programming"],
+    //   default: "Select Topic"
+    // },
     entry: {
       type: String,
       required: true,
@@ -25,7 +25,13 @@ const userBlogSchema = new Schema(
     comments: {
       type: String,
       trim: true
+    },
+    topic: [
+      {
+      type: Schema.Types.ObjectId,
+      ref: "Topic"
     }
+  ]
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`
@@ -33,6 +39,6 @@ const userBlogSchema = new Schema(
   }
 );
 
-const Userblog = model("Userblog", userBlogSchema);
+const Blog = model("Blog", userBlogSchema);
 
-module.exports = Userblog;
+module.exports = Blog;
