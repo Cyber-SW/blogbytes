@@ -8,12 +8,12 @@ router.get("/", (req, res, next) => {
 });
 
 /*test route to check if we receive data from mongodb atlas*/
-router.get("/", (req, res, next) => {
-  db.find()
-    .then(data => {
-      console.log(data)
-      res.render("index", { data: data })
-    })
-})
+// router.get("/", (req, res, next) => {
+//   db.find()
+//     .then(data => {
+//       console.log(data)
+//       res.render("index", { data: data })
+//     })
+// })
 
 module.exports = router;

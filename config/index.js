@@ -27,7 +27,7 @@ const MongoStore = require("connect-mongo");
 
 // Connects the mongo uri to maintain the same naming structure
 const MONGO_URI =
-  process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/blog.spot";
+  process.env.MONGODB_URI
 
 // Middleware configuration
 module.exports = (app) => {
@@ -43,7 +43,7 @@ module.exports = (app) => {
   app.set("views", path.join(__dirname, "..", "views"));
   // Sets the view engine to handlebars
   app.set("view engine", "hbs");
-  // AHandles access to the public folder
+  // Handles access to the public folder
   app.use(express.static(path.join(__dirname, "..", "public")));
 
   // Handles access to the favicon
@@ -54,9 +54,10 @@ module.exports = (app) => {
   // ℹ️ Middleware that adds a "req.session" information and later to check that you are who you say you are 😅
   app.use(
     session({
-      secret: process.env.SESSION_SECRET || "super hyper secret key",
-      resave: false,
-      saveUninitialized: false,
+      secret: process.env.SESSION_SECRET,
+      cookie: { maxAge: 1000 * 60 * 60 * 24 },
+      resave: true,
+      saveUninitialized: true,
       store: MongoStore.create({
         mongoUrl: MONGO_URI,
       }),
