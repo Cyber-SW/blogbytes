@@ -12,6 +12,7 @@ const express = require("express");
 // Handles the handlebars
 // https://www.npmjs.com/package/hbs
 const hbs = require("hbs");
+hbs.registerPartials(__dirname + "/views/partials")
 
 const app = express();
 
@@ -27,8 +28,11 @@ app.locals.appTitle = `${capitalize(projectName)} created with IronLauncher`;
 const indexRoutes = require("./routes/index.routes");
 app.use("/", indexRoutes);
 
-const authRoutes = require("./routes/user/auth.routes");
-app.use("/auth", authRoutes);
+const userAuthRoutes = require("./routes/user/auth.routes");
+app.use("/", userAuthRoutes);
+
+const userContentRoutes = require("./routes/user/content.routes");
+app.use("/", userContentRoutes);
 
 const adminRoutes=require("./routes/admin/admin.route")
 app.use("/",adminRoutes)

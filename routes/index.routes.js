@@ -7,7 +7,5 @@ router.get("/", (req, res, next) => {
   res.render("index");
 });
 
-/*test route to check if we receive data from mongodb atlas*/
-
 
 module.exports = router;

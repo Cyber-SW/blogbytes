@@ -16,12 +16,12 @@ const isLoggedOut = require("../../middleware/user/isLoggedOut");
 const isLoggedIn = require("../../middleware/user/isLoggedIn");
 
 // GET /auth/signup
-router.get("/signup", isLoggedOut, (req, res) => {
+router.get("/user-signup", isLoggedOut, (req, res) => {
   res.render("user-auth/signup");
 });
 
 // POST /auth/signup
-router.post("/signup", isLoggedOut, (req, res) => {
+router.post("/user-signup", isLoggedOut, (req, res) => {
   const { username, email, password } = req.body;
 
   // Check that username, email, and password are provided
@@ -64,7 +64,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
       return User.create({ username, email, password: hashedPassword });
     })
     .then((user) => {
-      res.redirect("/user-auth/login");
+      res.redirect("/user-login");
     })
     .catch((error) => {
       if (error instanceof mongoose.Error.ValidationError) {
@@ -81,12 +81,12 @@ router.post("/signup", isLoggedOut, (req, res) => {
 });
 
 // GET /auth/login
-router.get("/login", isLoggedOut, (req, res) => {
+router.get("/user-login", isLoggedOut, (req, res) => {
   res.render("user-auth/login");
 });
 
 // POST /auth/login
-router.post("/login", isLoggedOut, (req, res, next) => {
+router.post("/user-login", isLoggedOut, (req, res, next) => {
   const { username, email, password } = req.body;
 
   // Check that username, email, and password are provided
@@ -127,14 +127,16 @@ router.post("/login", isLoggedOut, (req, res, next) => {
               .status(400)
               .render("user-auth/login", { errorMessage: "Wrong credentials." });
             return;
+          } else {
+              // Add the user object to the session object
+              req.session.currentUser = user.toObject();
+              // Remove the password field
+              delete req.session.currentUser.password;
+
+              res.redirect("user-dashboard");
           }
 
-          // Add the user object to the session object
-          req.session.currentUser = user.toObject();
-          // Remove the password field
-          delete req.session.currentUser.password;
-
-          res.redirect("/");
+          
         })
         .catch((err) => next(err)); // In this case, we send error handling to the error handling middleware.
     })
@@ -142,10 +144,10 @@ router.post("/login", isLoggedOut, (req, res, next) => {
 });
 
 // GET /auth/logout
-router.get("/logout", isLoggedIn, (req, res) => {
+router.get("/user-logout", isLoggedIn, (req, res) => {
   req.session.destroy((err) => {
     if (err) {
-      res.status(500).render("user-auth/logout", { errorMessage: err.message });
+      res.status(500).render("logout", { errorMessage: err.message });
       return;
     }
 
