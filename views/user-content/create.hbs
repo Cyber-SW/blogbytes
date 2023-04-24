@@ -1,0 +1,24 @@
+{{> navbar}}
+
+<div>
+    <h2>Create blog</h2>
+  <form action="/create-blog" method="POST">
+
+    <label> Title
+      <input type="text" name="title" placeholder="give your blog a title" />
+    </label>
+
+    <label for="topic">Choose a topic</label>
+        <select id="topic" name="topic" multiple>
+            {{#each topics}}
+                <option value="{{this._id}}">{{this.topic}}</option>
+            {{/each}}
+        </select>
+    </label>
+
+    <label> Blog
+      <input type="text" name="entry" placeholder="write your blog" />
+    </label>
+
+    <button type="submit">Create Blog</button>
+</div>
