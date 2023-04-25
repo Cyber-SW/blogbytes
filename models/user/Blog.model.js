@@ -6,15 +6,9 @@ const userBlogSchema = new Schema(
     title: {
       type: String,
       required: true,
-      unique: false,
+      unique: true,
       trim: true,
     },
-    // topic: {
-    //   type: String,
-    //   required: true,
-    //   enum: ["Select Topic", "Mobile", "Software", "Hardware", "Gadgets", "Cybersecurity", "Artificial Intelligence", "Cloud Computing", "Internet of Things", "Data Science", "Programming"],
-    //   default: "Select Topic"
-    // },
     entry: {
       type: String,
       required: true,
@@ -26,12 +20,15 @@ const userBlogSchema = new Schema(
       type: String,
       trim: true
     },
-    topic: [
-      {
+    topic: {
+      type: String,
+      required: true,
+      enum: ["Mobile", "Software", "Hardware", "Gadgets", "Artificial Intelligence", "Cloud Computing", "Internet of Things", "Data Science", "Programming", "Other"]
+    },
+    creator: {
       type: Schema.Types.ObjectId,
-      ref: "Topic"
+      ref: "User"
     }
-  ]
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`
