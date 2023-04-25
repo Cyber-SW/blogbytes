@@ -27,7 +27,7 @@ a{
 
 /* HEADER */
 
-header{
+.header{
   width: 100%;
   height: 100vh;
   background: linear-gradient(356deg,#1164a6,#bce2ff);
@@ -38,6 +38,7 @@ header{
   display: flex;
   height: 100px;
 }
+
 
 .nav-left {
   display: flex;
