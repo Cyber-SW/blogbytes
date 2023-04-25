@@ -9,12 +9,7 @@ const userBlogSchema = new Schema(
       unique: false,
       trim: true,
     },
-    // topic: {
-    //   type: String,
-    //   required: true,
-    //   enum: ["Select Topic", "Mobile", "Software", "Hardware", "Gadgets", "Cybersecurity", "Artificial Intelligence", "Cloud Computing", "Internet of Things", "Data Science", "Programming"],
-    //   default: "Select Topic"
-    // },
+   
     entry: {
       type: String,
       required: true,
