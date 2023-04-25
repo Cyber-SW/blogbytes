@@ -1,21 +1,49 @@
-<h2>Sign In</h2>
+<div class="sign-in">
+  <img class="wave" src="/images/draw.png" />
+  <div class="container">
+    <div class="img">
+      <a href="/" class="log-in-home">
+        <p>BlogByte.</p>
+      </a>
+      <img src="/images/admin.svg" />
+    </div>
+    <div class="login-content">
+      <form action="/admin" method="post">
+        <img src="/images/profile.svg" />
+        <h2 class="title">Welcome <span class="log-in-span"> Admin! </span></h2>
+        <div class="input-div one">
+          <div class="i">
+            <i class="fas fa-user"></i>
+          </div>
+          <div class="div">
+            <h5>Username</h5>
+            <input type="text" class="input" name="username" id="username" />
+          </div>
+        </div>
+        <div class="input-div pass">
+          <div class="i">
+            <i class="fas fa-lock"></i>
+          </div>
+          <div class="div">
+            <h5>Password</h5>
+            <input
+              type="password"
+              class="input"
+              name="password"
+              id="password"
+            />
+          </div>
+        </div>
+        {{! <a href="#">Forgot Password?</a> }}
+        <a href="/admin/signup">Dont have an account?</a>
 
-<form action="/admin" method="post">
+      {{#if errorMessage}}
 
-<label for="username">Username</label>
-<input type="text" name="username" id="username">
+        <h3 class="error-message">{{errorMessage}}</h3>
 
-<label for="password">Password</label>
-<input type="password" name="password" id="password">
-
-<button type="submit">Sign In</button>
-
-</form>
-
-{{#if errorMessage}}
-
-    <h2>{{errorMessage}}</h2>
-
-{{/if}}
-
-<h2>Dont have an account?<a href="/admin/signup">sign Up</a></h2>
+      {{/if}}
+        <button type="submit" class="btn">Sign In</button>
+      </form>
+    </div>
+  </div>
+</div>

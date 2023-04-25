@@ -1,23 +1,52 @@
-<div id="login-form">
-  <h2>Log In</h2>
-  <form action="/user-login" method="POST">
+<div class="sign-in">
 
-    <label> Email
-      <input type="email" name="email" placeholder="Your email" />
-    </label>
+  <img class="wave" src="/images/draw.png" />
+  <div class="container">
+    <div class="img">
+      <a href="/" class="log-in-home">
+        <p>BlogByte.</p>
+      </a>
+      <img src="/images/left-signin.svg" />
+    </div>
+ 
+    <div class="login-content">
+      <form action="/user-login" method="post">
+        <img src="/images/profile.svg" />
+        <h2 class="title">Welcome To <span class="log-in-span"> BlogByte </span></h2>
+        <div class="input-div one">
+          <div class="i">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div class="div">
+            <h5>Email</h5>
+            <input type="email" class="input" name="email" id="email" />
+          </div>
+        </div>
+        <div class="input-div pass">
+          <div class="i">
+            <i class="fas fa-lock"></i>
+          </div>
+          <div class="div">
+            <h5>Password</h5>
+            <input
+              type="password"
+              class="input"
+              name="password"
+              id="password"
+            />
 
-    <label> Password
-      <input type="password" name="password" placeholder="Your password" />
-    </label>
+          </div>
+        </div>
+        {{! <a href="#">Forgot Password?</a> }}
+        <a href="/user-signup">Dont have an account?</a>
 
-    <button type="submit">Log in</button>
+        {{#if errorMessage}}
 
-    
-    <h2>Don´t have a accout?</h2>
-    <a href="/user-signup">Create New Account</a>
+          <h3 class="error-message">{{errorMessage}}</h3>
 
-    {{#if errorMessage}}
-      <p class="error">{{errorMessage}}</p>
-    {{/if}}
-  </form>
+        {{/if}}
+        <button type="submit" class="btn">Sign In</button>
+      </form>
+    </div>
+  </div>
 </div>

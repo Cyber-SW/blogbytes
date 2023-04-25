@@ -1,12 +1,461 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+/* Reseting HTMl */
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* font-family: "Bruno Ace SC", cursive; */
+  font-family: "Poppins", sans-serif;
+
+}
+a{
+  text-decoration: none;
 }
 
-a {
-  color: #00b7ff;
+/* NAVBAR */
+
+.nav-container {
+  display: flex;
+  background: linear-gradient(356deg,#1164a6,#bce2ff);
+  height: 100px;
 }
 
-h1 {
-  color: 15px;
+.nav-left {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 30%;
 }
+.nav-left img {
+  height: 92px;
+  margin-left: 26px;
+}
+.nav-heading {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    text-decoration: underline;
+    border: 1px solid black;
+    padding: 3px;
+    border-radius: 6px;
+    box-shadow: 4px 2px 4px #0F456B
+}
+.nav-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 70%;
+  padding-right: 81px;
+}
+
+.nav-btn{
+  position: relative;
+    margin: 10px 25px;
+    padding: 10px 10px;
+    border-radius: 2px;
+    color: rgb(0, 0, 0);
+    font-weight: 500;
+}
+
+.nav-btn::after{
+  content: "";
+  position: absolute;
+  background-color: rgb(255, 255, 255);
+  height: 3px;
+  width: 0;
+  left: 0;
+  bottom: 5;
+  transition: 0.4s ease-in;
+}
+.nav-btn:hover{
+  color: #ffffff;
+  text-decoration: none;
+}
+.nav-btn:hover::after{
+  width: 100%;
+}
+
+
+/* SIGN_IN */
+
+.log-in-home{
+    position: absolute;
+    top: 16px;
+    left: 39px;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    text-decoration: underline;
+    border: 1px solid black;
+    padding: 3px;
+    border-radius: 6px;
+    box-shadow: 4px 2px 4px #0F456B
+}
+
+.log-in-span{
+  text-decoration: underline;
+}
+.wave{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	height: 100%;
+	z-index: -1;
+}
+
+.container{
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap :7rem;
+    padding: 0 2rem;
+}
+
+.img{
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+.login-content{
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	text-align: center;
+}
+
+.img img{
+	width: 500px;
+}
+
+form{
+	width: 360px;
+}
+
+.login-content img{
+    height: 100px;
+}
+
+.login-content h2{
+	margin: 15px 0;
+	color: #000;
+	text-transform: uppercase;
+	font-size: 2.9rem;
+}
+
+.login-content .input-div{
+	position: relative;
+    display: grid;
+    grid-template-columns: 7% 93%;
+    margin: 25px 0;
+    padding: 5px 0;
+    border-bottom: 2px solid #d9d9d9;
+}
+
+.login-content .input-div.one{
+	margin-top: 0;
+}
+
+.i{
+	color: #d9d9d9;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.i i{
+	transition: .3s;
+}
+
+.input-div > div{
+    position: relative;
+	height: 45px;
+}
+
+.input-div > div > h5{
+	position: absolute;
+	left: 10px;
+	top: 50%;
+	transform: translateY(-50%);
+	color: #999;
+	font-size: 18px;
+	transition: .3s;
+}
+
+.input-div:before, .input-div:after{
+	content: '';
+	position: absolute;
+	bottom: -2px;
+	width: 0%;
+	height: 2px;
+	background-color: #4786BF;
+	transition: .4s;
+}
+
+.input-div:before{
+	right: 50%;
+}
+
+.input-div:after{
+	left: 50%;
+}
+
+.input-div.focus:before, .input-div.focus:after{
+	width: 50%;
+}
+
+.input-div.focus > div > h5{
+	top: -5px;
+	font-size: 15px;
+}
+
+.input-div.focus > .i > i{
+	color: #4786BF;
+}
+
+.input-div > div > input{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	border: none;
+	outline: none;
+	background: none;
+	padding: 0.5rem 0.7rem;
+	font-size: 1.2rem;
+	color: #555;
+	font-family: 'poppins', sans-serif;
+}
+
+.input-div.pass{
+	margin-bottom: 4px;
+}
+
+a{
+	display: block;
+	text-align: right;
+	text-decoration: none;
+	color: #000000;
+	font-size: 0.9rem;
+	transition: .3s;
+}
+
+a:hover{
+	color: #4786BF;
+}
+
+.btn{
+	display: block;
+	width: 100%;
+	height: 50px;
+	border-radius: 25px;
+	outline: none;
+	border: none;
+	background-image: linear-gradient(to right, #4786BF, #1d0079, #299fb8);
+	background-size: 200%;
+	font-size: 1.2rem;
+	color: #fff;
+	font-family: 'Poppins', sans-serif;
+	text-transform: uppercase;
+	margin: 1rem 0;
+	cursor: pointer;
+	transition: .5s;
+}
+.btn:hover{
+	background-position: right;
+}
+
+.error-message {
+  font-size: 13px;
+  background-image: linear-gradient(to right, #ffffff, #ff4b4b, #cdcdcd);
+  color: black;
+  padding: 10px 10px;
+  margin-top: 9px;
+  border-radius: 20px;
+}
+
+/* LOADER */
+
+#load {
+  position:absolute;
+  width:600px;
+  height:360px;
+  left:50%;
+  top:40%;
+  margin-left:-300px;
+  overflow:visible;
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
+  cursor:default;
+}
+
+#load div {
+  position:absolute;
+  width:20px;
+  height:60px;
+  opacity:0;
+  font-size: 2.5rem;
+  font-family:Helvetica, Arial, sans-serif;
+  animation:move 2s linear infinite;
+  -o-animation:move 2s linear infinite;
+  -moz-animation:move 2s linear infinite;
+  -webkit-animation:move 2s linear infinite;
+  transform:rotate(180deg);
+  -o-transform:rotate(180deg);
+  -moz-transform:rotate(180deg);
+  -webkit-transform:rotate(180deg);
+  color:#35C4F0;
+}
+
+#load div:nth-child(2) {
+  animation-delay:0.2s;
+  -o-animation-delay:0.2s;
+  -moz-animation-delay:0.2s;
+  -webkit-animation-delay:0.2s;
+}
+#load div:nth-child(3) {
+  animation-delay:0.4s;
+  -o-animation-delay:0.4s;
+  -webkit-animation-delay:0.4s;
+  -webkit-animation-delay:0.4s;
+}
+#load div:nth-child(4) {
+  animation-delay:0.6s;
+  -o-animation-delay:0.6s;
+  -moz-animation-delay:0.6s;
+  -webkit-animation-delay:0.6s;
+}
+#load div:nth-child(5) {
+  animation-delay:0.8s;
+  -o-animation-delay:0.8s;
+  -moz-animation-delay:0.8s;
+  -webkit-animation-delay:0.8s;
+}
+#load div:nth-child(6) {
+  animation-delay:1s;
+  -o-animation-delay:1s;
+  -moz-animation-delay:1s;
+  -webkit-animation-delay:1s;
+}
+#load div:nth-child(7) {
+  animation-delay:1.2s;
+  -o-animation-delay:1.2s;
+  -moz-animation-delay:1.2s;
+  -webkit-animation-delay:1.2s;
+}
+#load div:nth-child(8) {
+  animation-delay:1.4s;
+  -o-animation-delay:1.4s;
+  -moz-animation-delay:1.4s;
+  -webkit-animation-delay:1.4s;
+}
+
+@keyframes move {
+  0% {
+    left:0;
+    opacity:0;
+  }
+  35% {
+    left: 41%; 
+    -moz-transform:rotate(0deg);
+    -webkit-transform:rotate(0deg);
+    -o-transform:rotate(0deg);
+    transform:rotate(0deg);
+    opacity:1;
+  }
+  65% {
+    left:59%; 
+    -moz-transform:rotate(0deg); 
+    -webkit-transform:rotate(0deg); 
+    -o-transform:rotate(0deg);
+    transform:rotate(0deg); 
+    opacity:1;
+  }
+  100% {
+    left:100%; 
+    -moz-transform:rotate(-180deg); 
+    -webkit-transform:rotate(-180deg); 
+    -o-transform:rotate(-180deg); 
+    transform:rotate(-180deg);
+    opacity:0;
+  }
+}
+
+@-moz-keyframes move {
+  0% {
+    left:0; 
+    opacity:0;
+  }
+  35% {
+    left:41%; 
+    -moz-transform:rotate(0deg); 
+    transform:rotate(0deg);
+    opacity:1;
+  }
+  65% {
+    left:59%; 
+    -moz-transform:rotate(0deg); 
+    transform:rotate(0deg);
+    opacity:1;
+  }
+  100% {
+    left:100%; 
+    -moz-transform:rotate(-180deg); 
+    transform:rotate(-180deg);
+    opacity:0;
+  }
+}
+
+@-webkit-keyframes move {
+  0% {
+    left:0; 
+    opacity:0;
+  }
+  35% {
+    left:41%; 
+    -webkit-transform:rotate(0deg); 
+    transform:rotate(0deg); 
+    opacity:1;
+  }
+  65% {
+    left:59%; 
+    -webkit-transform:rotate(0deg); 
+    transform:rotate(0deg); 
+    opacity:1;
+  }
+  100% {
+    left:100%;
+    -webkit-transform:rotate(-180deg); 
+    transform:rotate(-180deg); 
+    opacity:0;
+  }
+}
+
+@-o-keyframes move {
+  0% {
+    left:0; 
+    opacity:0;
+  }
+  35% {
+    left:41%; 
+    -o-transform:rotate(0deg); 
+    transform:rotate(0deg); 
+    opacity:1;
+  }
+  65% {
+    left:59%; 
+    -o-transform:rotate(0deg); 
+    transform:rotate(0deg); 
+    opacity:1;
+  }
+  100% {
+    left:100%; 
+    -o-transform:rotate(-180deg); 
+    transform:rotate(-180deg); 
+    opacity:0;
+  }
+}
+
