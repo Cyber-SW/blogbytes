@@ -9,11 +9,7 @@ router.get("/user-dashboard", isLoggedIn, (req, res, next) => {
     const username = req.session.currentUser.username
     res.render("user-content/dashboard", { username: username })
 })
-
-router.post("/user-dashboard", isLoggedIn, (req, res, next) => {
-
-})
-
+    
 //user profile routes
 router.get("/user-profile", isLoggedIn, (req, res, next) => {
     res.render("user-content/profile")
