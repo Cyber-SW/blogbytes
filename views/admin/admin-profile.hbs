@@ -18,29 +18,50 @@
   <hr>
 <nav> --}}
 
-<div class="left">Logo</div>
-  <div class="right">
-    <form id="logout-form" action="/admin/profile/logout" method="POST">
-      <button>Logout</button>
-    </form>
-  </div>
-</nav>
+<section>
+
+  <nav class="navbar">
+
+    <div class="nav-container">
+
+      <div class="nav-left">
+        <a href="/"><img src="/images/blogbytes-logo.png" alt="" /></a>
+        {{!-- <p class="nav-heading">BlogByte.</p> --}}
+      </div>
+
+      <div class="nav-right">
+        <a href="#" class="nav-btn hide">About</a>
+        <a href="#" class="nav-btn hide">Explore</a>
+        <a href="#" class="nav-btn hide">Contact Us</a>
+        <a href="/admin" class="nav-btn log-in-btn hide">Admin</a>
+        <a href="/user-logout" class="nav-btn log-in-btn">Log Out</a>
+      </div>
+
+    </div>
+
+  </nav>
+
+
+<h2 class="admin-headline">ADMIN PORTAL</h2>
+</nav class="display-user-container">
 
 {{#if userInSession}}
 
-  <h2>Hello Admin,{{userInSession.fullname}}</h2>
+  <h2 class="greet-admin">Hello Admin, {{userInSession.fullname}}</h2>
 
 {{else}}
-  <h2>Still no logged in user,Sorry!</h2>
+  <h2>Still not logged in user,Sorry!</h2>
 
 {{/if}}
 
 {{#each data}}
 
-  <h2><a href="/admin/profile/{{this._id}}">{{this.username}}</a></h2>
+  <h2><a class="display-user" href="/admin/profile/{{this._id}}">{{this.username}}</a></h2>
 
-  <a href="/admin/profile/delete/{{this._id}}">Delete This Profile</a>
+  <a class="display-user" href="/admin/profile/delete/{{this._id}}">Delete This Profile</a>
 {{/each}}
 
 
 </nav>
+
+</section>
