@@ -9,16 +9,21 @@
     </label>
 
     <label for="topic">Choose a topic</label>
-        <select id="topic" name="topic" multiple>
+        <select id="topic" name="topic" required>
+          <option value="" disabled selected>Select Topic</option>
             {{#each topics}}
-                <option value="{{this._id}}">{{this.topic}}</option>
+                <option value="{{this}}">{{this}}</option>
             {{/each}}
         </select>
     </label>
-
+    
     <label> Blog
-      <input type="text" name="entry" placeholder="write your blog" />
+      <textarea type="textarea" id="entry" name="entry" rows="4" cols="50" placeholder="write your blog here"></textarea>
     </label>
 
     <button type="submit">Create Blog</button>
+
+    {{#if errorMessage}}
+      <p class="error">{{errorMessage}}</p>
+    {{/if}}
 </div>
