@@ -83,7 +83,7 @@ router.get("/admin/profile/:id/delete",isLoggedIn,(req,res,next)=>{
   })
 })
 
-router.post('/admin/profile/logout', (req, res, next) => {
+router.get('/admin/profile/logout', (req, res, next) => {
     req.session.destroy(err => {
       if (err){
         next(err);
