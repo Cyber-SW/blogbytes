@@ -3,16 +3,16 @@
   <img class="wave" src="/images/draw.png" />
   <div class="container">
     <div class="img">
-      <a href="/" class="log-in-home">
-        <p>BlogByte.</p>
+      <a href="/">
+      {{!-- <img id="logo-img" src="/images/blogbytes-logo.png" class="log-in-home"/> --}}
       </a>
-      <img src="/images/left-signin.svg" />
+      <img src="/images/left-signin.svg">
     </div>
  
     <div class="login-content">
       <form action="/user-login" method="post">
         <img src="/images/profile.svg" />
-        <h2 class="title">Welcome To <span class="log-in-span"> BlogByte </span></h2>
+        <h2 class="title">WLCOME TO BLOGBYTE</h2>
         <div class="input-div one">
           <div class="i">
             <i class="fas fa-envelope"></i>
@@ -38,7 +38,7 @@
           </div>
         </div>
         {{! <a href="#">Forgot Password?</a> }}
-        <a href="/user-signup">Dont have an account?</a>
+        <a class="sing-up-link" href="/user-signup">Dont have an account?</a>
 
         {{#if errorMessage}}
 
