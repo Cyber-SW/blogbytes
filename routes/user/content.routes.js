@@ -48,6 +48,7 @@ router.get("/user-dashboard", (req, res, next) => {
 
 //user profile routes
 router.get("/user-profile", isLoggedIn, (req, res, next) => {
+  const user = req.session.currentUser.username
     Blog.find()
     .populate("creator")
     .then(data=>{
@@ -68,9 +69,54 @@ router.get("/user-profile", isLoggedIn, (req, res, next) => {
         //     // totalLikes=totalLikes+data.likes
         // })
 
-        res.render("user-content/profile",{userData:userData,totalLikes:totalLikes});
+        res.render("user-content/profile",{userData:userData,totalLikes:totalLikes, username: user});
     })
 });
+
+//blog detail view routes
+router.get("/blog-detail/:id", (req, res, next) => {
+  const blogId = req.params.id
+  const username = req.session.currentUser.username
+
+  Blog.findById(blogId)
+    .then(blogToView => {
+      res.render("user-content/blog-detail", { blog: blogToView, username: username })
+    })
+    .catch(err => next(err))
+})
+
+//delete blog routes
+router.post("/blog-detail/:id", isLoggedIn, (req, res, next) => {
+  const blogId = req.params.id
+  console.log(blogId)
+
+  Blog.findByIdAndDelete(blogId)
+    .then(() => res.redirect("/user-profile"))
+    .catch(err => next(err))
+})
+
+//edit blog routes
+router.get("/edit-blog/:id", isLoggedIn, (req, res, next) => {
+  const topics = Blog.schema.path("topic").enumValues;
+  const blogId = req.params.id
+
+  Blog.findById(blogId)
+    .then(blogToEdit => {
+      res.render("user-content/edit-blog", { blog: blogToEdit, topics: topics })
+    })
+    .catch(err => next(err))
+})
+
+router.post("/edit-blog/:id", isLoggedIn, (req, res, next) => {
+  const blogId = req.params.id
+  const { title, topic, entry } = req.body
+
+  Blog.findByIdAndUpdate(blogId, { title, topic, entry }, { new: true })
+    .then(updatedBlog => {
+      res.redirect("/user-profile")
+    })
+    .catch(err => next(err))
+})
 
 //user explore routes
 router.get("/explore", isLoggedIn, (req, res, next) => {
@@ -90,6 +136,7 @@ router.get("/explore-blog/:id",isLoggedIn,(req,res,next)=>{
         res.render("user-content/explore-blog",{data})
     })
 })
+
 //user create routes
 router.get("/create-blog", isLoggedIn, (req, res, next) => {
   const topics = Blog.schema.path("topic").enumValues;
@@ -102,7 +149,7 @@ router.post("/create-blog", isLoggedIn, (req, res, next) => {
   const { title, topic, entry } = req.body;
 
   Blog.create({ title, topic, entry, creator: userId }).then(() => {
-    res.redirect("/user-dashboard");
+    res.redirect("/user-profile");
   });
 });
 
