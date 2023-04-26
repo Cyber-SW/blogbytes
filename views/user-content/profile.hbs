@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <section id="sidebar">
   <div class="user-nav-left">
     <a href="/user-dashboard"><img
@@ -31,6 +32,11 @@
         <span class="text">Explore</span>
       </a>
     </li>
+=======
+
+<h3 class="blog-username">Username:{{username}}</h3>
+<h3 class="blog-likes">Likes:{{totalLikes}}</h3>
+>>>>>>> main
 
   </ul>
   <ul class="side-menu">
@@ -78,6 +84,13 @@
         </ul>
       </div>
 
+    <div class="short-blog">
+        <a href="/blog-detail/{{this._id}}" class="short-blog-link">
+            <div class="short-blog-div">
+                <h3 class="blog-name">Title:{{this.title}}</h3>
+                <h3 class="blog-topic">Topic:{{this.topic}}</h3>
+            </div>
+        </a>
     </div>
 
     <ul class="box-info">

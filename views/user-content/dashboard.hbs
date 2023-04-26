@@ -1,25 +1,4 @@
-{{! <nav class="user-nav">
 
-  <div class="user-nav-container">
-
-    <div class="user-nav-left">
-      <a href="/user-dashboard"><img
-          src="/images/blogbytes-logo.png"
-          alt=""
-        /></a>
-    </div>
-
-    <div class="user-nav-right">
-      <a href="/user-profile" class="user-nav-btn">Profile</a>
-
-      <a href="/create-blog" class="user-nav-btn">Create</a>
-      <a href="/explore" class="user-nav-btn">Explore</a>
-      <a href="/user-logout" class="user-nav-btn">Logout</a>
-    </div>
-
-  </div>
-
-</nav> }}
 
 <!-- SIDEBAR -->
 <section id="sidebar">
@@ -162,12 +141,39 @@
         <p class="user-blog-description">Description:{{this.description}}</p>
         <p class="user-blog-likes">Total Likes:{{this.likes}}</p>
 
+<<<<<<< HEAD
       </div>
+=======
+    <div class="blog">
+        <h3 class="blog-creator">Username:{{this.creatorName}}</h3>
+        <h2 class="blog-title">Title:{{this.title}}</h2>
+        <p class="blog-description">Description:{{this.description}}</p>
+        <p class="blog-likes">Total Likes:{{this.likes}}</p>
+        {{#each comments}}
+            <p class="blog-comments">Comments: {{this}}</p>
+        {{/each}}
+    </div>
+>>>>>>> main
+
+    <h3>Write a comment:</h3>
+    <form action="/user-dashboard/{{this.blogId}}" method="POST">
+        <textarea type="textarea" id="comments" name="comments" rows="4" cols="50" placeholder="write your comment here"></textarea>
+
+    <button type="submit">Create Comment</button>
+    </form>
+      
 
     {{/each}}
 
+<<<<<<< HEAD
     <div class="user-header-btn">
       <a href="/explore">Explore More</a>
+=======
+    
+
+    <div class="header-btn">
+        <a href="/explore">Explore More</a>
+>>>>>>> main
     </div>
 
   </div>

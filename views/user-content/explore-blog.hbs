@@ -150,8 +150,19 @@
         <p class="blog-info-description">
             Description:{{data.entry}}
         </p>
+        <h3>Comments</h3>
+            {{#each data}}
+                {{#each comments}}
+                    <p>{{this}}</p>
+                {{/each}}
+            {{/each}}
+        
+        <h3>Write a comment:</h3>
+            <form action="/explore-blog/{{data._id}}" method="POST">
+                <textarea type="textarea" id="comments" name="comments" rows="4" cols="50" placeholder="write your comment here"></textarea>
 
-
+            <button type="submit">Create Comment</button>
+        </form>
 
     </div>
 

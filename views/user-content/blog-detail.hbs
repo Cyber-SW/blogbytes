@@ -1,0 +1,17 @@
+
+<h2>{{username}}</h2>
+
+<h1>Title: {{blog.title}}</h2>
+
+<h2>Topic: {{blog.topic}}</h3>
+
+<h3>Blogentry</h3>
+<p>{{blog.entry}}</p>
+
+<form action="/blog-detail/{{blog._id}}" method="POST"><button>Delete</button></form>
+<a href="/edit-blog/{{blog._id}}">Edit</a>
+
+<h3>Comments</h3>
+{{#each blog}}
+    <p>{{comments}}</p>
+{{/each}}
