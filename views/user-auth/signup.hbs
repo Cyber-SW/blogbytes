@@ -1,11 +1,20 @@
 <div class="sign-in">
   <img class="wave" src="/images/draw.png" />
   <div class="container">
+
+
     <div class="img">
-      <a href="/" class="log-in-home">
-      <img src="/images/signup.svg" />
+      <a href="/">
+        <img
+          id="logo-img"
+          src="/images/blogbytes-logo-black.png"
+          class="log-in-home"
+        />
       </a>
+      <img src="/images/signup.svg" />
     </div>
+
+
     <div class="login-content">
       <form action="/user-signup" method="post">
         <img src="/images/profile.svg" />
@@ -40,18 +49,18 @@
               name="password"
               id="password"
             />
-            
+
           </div>
         </div>
         {{! <a href="#">Forgot Password?</a> }}
         <a href="/user-login">Sign In</a>
 
-      {{#if errorMessage}}
+        {{#if errorMessage}}
 
-        <h3 class="error-message">{{errorMessage}}</h3>
+          <h3 class="error-message">{{errorMessage}}</h3>
 
-      {{/if}}
-        <button type="submit" class="btn">Sign In</button>
+        {{/if}}
+        <button type="submit" class="btn">Sign Up</button>
       </form>
     </div>
   </div>
