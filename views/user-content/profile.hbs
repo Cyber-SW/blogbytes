@@ -1,17 +1,15 @@
-{{> navbar}}
 
+<h3 class="blog-username">Username:{{username}}</h3>
 <h3 class="blog-likes">Likes:{{totalLikes}}</h3>
 
  {{#each userData}}
 
 
     <div class="short-blog">
-        <a href="/profile" class="short-blog-link">
+        <a href="/blog-detail/{{this._id}}" class="short-blog-link">
             <div class="short-blog-div">
-                <h3 class="blog-topic">Topic:{{this.topic}}</h3>
                 <h3 class="blog-name">Title:{{this.title}}</h3>
-                <h3 class="blog-username">Username:{{this.creator.username}}</h3>
-                {{!-- <a href="/explore-blog/{{this._id}}">Read In Detail</a> --}}
+                <h3 class="blog-topic">Topic:{{this.topic}}</h3>
             </div>
         </a>
     </div>

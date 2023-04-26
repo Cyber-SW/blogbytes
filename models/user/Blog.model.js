@@ -17,10 +17,10 @@ const userBlogSchema = new Schema(
       type: Number,
       default:0
     },
-    comments: {
+    comments: [{
       type: String,
       trim: true
-    },
+    }],
     topic: {
       type: String,
       required: true,

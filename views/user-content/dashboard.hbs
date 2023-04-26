@@ -1,4 +1,4 @@
-{{> navbar}}
+
 <div class="first-half">
     <h2>Hello {{username}}</h2>
 
@@ -14,10 +14,22 @@
         <h2 class="blog-title">Title:{{this.title}}</h2>
         <p class="blog-description">Description:{{this.description}}</p>
         <p class="blog-likes">Total Likes:{{this.likes}}</p>
-
+        {{#each comments}}
+            <p class="blog-comments">Comments: {{this}}</p>
+        {{/each}}
     </div>
 
+    <h3>Write a comment:</h3>
+    <form action="/user-dashboard/{{this.blogId}}" method="POST">
+        <textarea type="textarea" id="comments" name="comments" rows="4" cols="50" placeholder="write your comment here"></textarea>
+
+    <button type="submit">Create Comment</button>
+    </form>
+      
+
     {{/each}}
+
+    
 
     <div class="header-btn">
         <a href="/explore">Explore More</a>
