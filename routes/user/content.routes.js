@@ -28,23 +28,36 @@ router.get("/user-dashboard", (req, res, next) => {
 
       const firstTwoObj=[
         {
+            blogId:data[first]._id,
             creatorName:data[first].creator.username,
             title:data[first].title,
             description:data[first].entry,
-            likes:data[first].likes
+            likes:data[first].likes,
+            comments:data[first].comments
         },
         {
+            blogId:data[second]._id,
             creatorName:data[second].creator.username,
             title:data[second].title,
             description:data[second].entry,
-            likes:data[second].likes
+            likes:data[second].likes,
+            comments:data[second].comments
         }
       ]
-    //   console.log(firstTwoObj)
       res.render("user-content/dashboard", { username: username,firstTwoObj});
 
-    });
+    })
+    .catch(err => next(err))
 });
+
+router.post("/user-dashboard/:id", isLoggedIn, (req, res, next) => {
+  const blogId = req.params.id
+  const { comments } = req.body
+  
+  Blog.findByIdAndUpdate(blogId, { $addToSet: { comments: comments } }, { new: true })
+    .then(comments => res.redirect("/user-dashboard"))
+    .catch(err => next(err))
+})
 
 //user profile routes
 router.get("/user-profile", isLoggedIn, (req, res, next) => {
@@ -71,6 +84,7 @@ router.get("/user-profile", isLoggedIn, (req, res, next) => {
 
         res.render("user-content/profile",{userData:userData,totalLikes:totalLikes, username: user});
     })
+    .catch(err => next(err))
 });
 
 //blog detail view routes
@@ -88,7 +102,6 @@ router.get("/blog-detail/:id", (req, res, next) => {
 //delete blog routes
 router.post("/blog-detail/:id", isLoggedIn, (req, res, next) => {
   const blogId = req.params.id
-  console.log(blogId)
 
   Blog.findByIdAndDelete(blogId)
     .then(() => res.redirect("/user-profile"))
@@ -124,17 +137,27 @@ router.get("/explore", isLoggedIn, (req, res, next) => {
     Blog.find()
     .populate("creator")
     .then((data) => {
-        // console.log(data)
       res.render("user-content/explore",{data:data});
-    });
+    })
+    .catch(err => next(err))
 });
+
 router.get("/explore-blog/:id",isLoggedIn,(req,res,next)=>{
     Blog.findById(req.params.id)
     .populate("creator")
     .then(data=>{
-        
         res.render("user-content/explore-blog",{data})
     })
+    .catch(err => next(err))
+})
+
+router.post("/explore-blog/:id", isLoggedIn, (req, res, next) => {
+  const blogId = req.params.id
+  const { comments } = req.body
+  
+  Blog.findByIdAndUpdate(blogId, { $addToSet: { comments: comments } }, { new: true })
+    .then(comments => res.redirect(`/explore-blog/${blogId}`))
+    .catch(err => next(err))
 })
 
 //user create routes
@@ -148,9 +171,11 @@ router.post("/create-blog", isLoggedIn, (req, res, next) => {
   const userId = req.session.currentUser._id;
   const { title, topic, entry } = req.body;
 
-  Blog.create({ title, topic, entry, creator: userId }).then(() => {
-    res.redirect("/user-profile");
-  });
+  Blog.create({ title, topic, entry, creator: userId })
+    .then(() => {
+      res.redirect("/user-profile");
+  })
+  .catch(err => next(err))
 });
 
 module.exports = router;
