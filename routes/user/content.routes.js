@@ -48,7 +48,28 @@ router.get("/user-dashboard", (req, res, next) => {
 
 //user profile routes
 router.get("/user-profile", isLoggedIn, (req, res, next) => {
-  res.render("user-content/profile");
+    Blog.find()
+    .populate("creator")
+    .then(data=>{
+        let userData=[]
+        let totalLikes=0
+        data.filter((user)=>{
+            if(req.session.currentUser.username===user.creator.username)
+            {
+                userData.push(user)
+            }
+        })
+        for(let i=0;i<userData.length;i++)
+        {
+            totalLikes+=userData[i].likes
+        }
+        // userData.forEach((data,index)=>{
+        //     console.log(data[index])
+        //     // totalLikes=totalLikes+data.likes
+        // })
+
+        res.render("user-content/profile",{userData:userData,totalLikes:totalLikes});
+    })
 });
 
 //user explore routes
