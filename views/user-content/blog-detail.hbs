@@ -1,17 +1,130 @@
+<section id="sidebar">
+    <div class="user-nav-left">
+        <a href="/user-dashboard"><img src="/images/blogbytes-logo-black.png" alt="" /></a>
+    </div>
 
-<h2>{{username}}</h2>
+    <ul class="side-menu top">
+        <li class="active">
+            <a href="/user-dashboard">
+                <i class="bx bxs-dashboard"></i>
+                <span class="text">Dashboard</span>
+            </a>
+        </li>
+        <li>
+            <a href="/user-profile">
+                <i class="bx bxs-shopping-bag-alt"></i>
+                <span class="text">Profile</span>
+            </a>
+        </li>
+        <li>
+            <a href="/create-blog">
+                <i class="bx bxs-doughnut-chart"></i>
+                <span class="text">Create-Blog</span>
+            </a>
+        </li>
+        <li>
+            <a href="/explore">
+                <i class="bx bxs-message-dots"></i>
+                <span class="text">Explore</span>
+            </a>
+        </li>
+
+    </ul>
+    <ul class="side-menu">
+
+        <li>
+            <a href="/user-logout" class="logout">
+                <i class="bx bxs-log-out-circle"></i>
+                <span class="text">Logout</span>
+            </a>
+        </li>
+    </ul>
+</section>
+<!-- SIDEBAR -->
+
+<!-- CONTENT -->
+<section id="content">
+    <!-- NAVBAR -->
+    <nav>
+        <i class="bx bx-menu"></i>
+        <form action="#">
+
+        </form>
+        <input type="checkbox" id="switch-mode" hidden />
+        <label for="switch-mode" class="switch-mode"></label>
+
+        <a href="/user-profile" class="profile">
+            <img src="/images/profile.svg" />
+        </a>
+    </nav>
+    <!-- NAVBAR -->
+
+    <!-- MAIN -->
+    <main>
+        <div class="head-title">
+            <div class="left">
+                <h1>Profile</h1>
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="#">Dashboard</a>
+                    </li>
+                    <li><i class="bx bx-chevron-right"></i></li>
+                    <li>
+                        <a class="active" href="/user-profile">Profile</a>
+                    </li>
+                </ul>
+            </div>
+            <a href="#" class="btn-download">
+                <i class="bx bx-user"></i>
+                <span class="text">{{username}}</span>
+            </a>
+        </div>
+
+
+
+        <div class="table-data">
+
+            <div class="order">
+                <div class="head">
+
+                    <div class="dashboard-tud">
+                        <h2 class="dashboard-title"><span class="dashboard-starttext"></span>{{blog.title}}
+                        </h2>
+                        <h3 class="dashboard-username"><span class="dashboard-starttext">
+                                Topic: </span>{{blog.topic}}</h3>
+                        <p class="dashboard-description"><span class="dashboard-starttext"></span>{{blog.entry}}</p>
+
+                    </div>
+                    <div class="delete-edit">
+                        <form action="/blog-detail/{{blog._id}}"    method="POST" class="delete-edit-form "><button>Delete</button></form>
+                        <a href="/edit-blog/{{blog._id}}" class="comment-btn">Edit</a>
+                    </div>
+                    <div class="like-comment">
+
+                        <p class="">Total Likes:{{firstTwoObj.0.likes}}</p>
+                        <p class="">Total Comments:{{firstTwoObj.0.totalComments}}</p>
+                    </div>
+                    <div class="comment-section">
+                        {{#each blog.comments}}
+                        <h4 class="single">Comments:{{this}}</h4>
+                        {{/each}}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+</section>
+
 
 <h1>Title: {{blog.title}}</h2>
 
-<h2>Topic: {{blog.topic}}</h3>
+    <h2>Topic: {{blog.topic}}</h2>
 
-<h3>Blogentry</h3>
-<p>{{blog.entry}}</p>
+        <h3>Blogentry</h3>
+        <p>{{blog.entry}}</p>
 
-<form action="/blog-detail/{{blog._id}}" method="POST"><button>Delete</button></form>
-<a href="/edit-blog/{{blog._id}}">Edit</a>
+        <form action="/blog-detail/{{blog._id}}" method="POST"><button>Delete</button></form>
+        <a href="/edit-blog/{{blog._id}}">Edit</a>
 
-<h3>Comments</h3>
-{{#each blog}}
-    <p>{{comments}}</p>
-{{/each}}
+    
