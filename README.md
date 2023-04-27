@@ -9,9 +9,12 @@ The application is structured in two parts. The admin portal is where all users 
 The most challenging thing was implementing the like blogs feature because every user needs the ability to like multiple blogs and also unlike specific blogs by clicking on the like button again while increasing or decreasing the total number of likes of that specific blog. We solved that problem by giving the user model an additional property, basically, an array where all the ObjectIds from the blogs he pressed the like button get stored. And every time the user clicks on a like button we loop over the array inside the user model with the stored ObjectIds and have an if statement that compares the ObjectIds from the blog where he clicked the like button and the ObjectIds inside the array. When the loop finds an ObjectId where the condition is true the likes property inside the blog model gets decreased and the ObjectId of that specific log gets deleted from the array. And when the condition is false the ObjectId from the blog gets stored inside the array and the likes of that specific blog get increased. 
 
 What we learned: 
-> Working as a team
-> Structuring files and work to guarantee an issueless merge or at least an easily fixable issue
-> Creating, structuring, and using databases specifically MongoDB
-> Working with a server specifically Express
-> Creating a dynamic website by passing different views from the back end to the front end
-> Communicating everything in English since Hussains native language is Pakistani and my is German
+- Working as a team
+- Structuring files and work to guarantee an issueless merge or at least an easily fixable issue
+- Creating, structuring, and using databases specifically MongoDB
+- Working with a server specifically Express
+- Creating a dynamic website by passing different views from the back end to the front end
+- Communicating everything in English since Hussains native language is Pakistani and my is German
+
+Thank you for taking the time reading this README!
+Hussain and Shawn
