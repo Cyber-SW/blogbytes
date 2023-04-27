@@ -77,16 +77,12 @@
           </li>
         </ul>
       </div>
-
-    <div class="short-blog">
-        <a href="/blog-detail/{{this._id}}" class="short-blog-link">
-            <div class="short-blog-div">
-                <h3 class="blog-name">Title:{{this.title}}</h3>
-                <h3 class="blog-topic">Topic:{{this.topic}}</h3>
-            </div>
-        </a>
+      <a href="#" class="btn-download">
+        <i class="bx bx-user"></i>
+        <span class="text">{{username}}</span>
+      </a>
     </div>
-
+ 
     <ul class="box-info">
       <li>
         <i class="bx bxs-like"></i>
@@ -106,8 +102,8 @@
     </ul>
 
     <div class="table-data">
-      {{#each userData}}
       <div class="order">
+      {{#each userData}}
         <div class="head">
           <div class="short-blog">
             <a href="/blog-detail/{{this._id}}" class="short-blog-link">
@@ -121,8 +117,8 @@
           </div>
         </div>
 
-      </div>
       {{/each}}
+      </div>
 
      
     </div>

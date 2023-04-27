@@ -55,7 +55,7 @@
     <label for="switch-mode" class="switch-mode"></label>
 
     <a href="/user-profile" class="profile">
-      <img src="/images/profile.svg">
+      <img src="/images/profile.svg" />
     </a>
   </nav>
   <!-- NAVBAR -->
@@ -81,76 +81,78 @@
       </a>
     </div>
 
-
-
     <div class="table-data">
 
       <div class="order">
         <div class="head">
-          <h3>Create </h3>
-          <form action="/create-blog" method="POST">
+          <div class="wrapper">
+            <div class="title">
+              Create Your Own Blog
+            </div>
+            <form action="/create-blog" method="post">
+              <div class="form">
+                <div class="inputfield">
+                  <label>Title:</label>
+                  <input type="text" class="input" name="title" placeholder="give your blog a title" />
+                </div>
+                <div class="inputfield">
 
-            <label> Title
-              <input type="text" name="title" placeholder="give your blog a title" />
-            </label>
+                  <label for="topic">Topic:</label>
+                  <select id="topic" name="topic" class="custom_select" required>
+                    <option value="" disabled selected>Select Topic</option>
+                    {{#each topics}}
+                    <option value="{{this}}">{{this}}</option>
+                    {{/each}}
+                  </select>
+                  </label>
+                </div>
+                <div class="inputfield">
 
-            <label for="topic">Choose a topic</label>
-            <select id="topic" name="topic" required>
-              <option value="" disabled selected>Select Topic</option>
-              {{#each topics}}
-              <option value="{{this}}">{{this}}</option>
-              {{/each}}
-            </select>
-            </label>
+                  <label>
+                    <textarea type="textarea" id="entry" name="entry" rows="20" cols="50"
+                      placeholder="write your blog here"></textarea>
+                  </label>
+                </div>
 
-            <label> Blog
-              <textarea type="textarea" id="entry" name="entry" rows="4" cols="50"
-                placeholder="write your blog here"></textarea>
-            </label>
-
-            <button type="submit">Create Blog</button>
-
-            {{#if errorMessage}}
-            <p class="error">{{errorMessage}}</p>
-            {{/if}}
-
-          </form>
+                <div class="inputfield">
+                  <button type="submit" class="btn">Create Blog</button>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
 
       </div>
-
 
     </div>
   </main>
 </section>
 
 {{!--
-<div>
-  <h2>Create blog</h2>
-  <form action="/create-blog" method="POST">
+<h3>Create </h3>
+<form action="/create-blog" method="POST">
 
-    <label> Title
-      <input type="text" name="title" placeholder="give your blog a title" />
-    </label>
+  <label> Title
+    <input type="text" name="title" placeholder="give your blog a title" />
+  </label>
 
-    <label for="topic">Choose a topic</label>
-    <select id="topic" name="topic" required>
-      <option value="" disabled selected>Select Topic</option>
-      {{#each topics}}
-      <option value="{{this}}">{{this}}</option>
-      {{/each}}
-    </select>
-    </label>
+  <label for="topic">Choose a topic</label>
+  <select id="topic" name="topic" required>
+    <option value="" disabled selected>Select Topic</option>
+    {{#each topics}}
+    <option value="{{this}}">{{this}}</option>
+    {{/each}}
+  </select>
+  </label>
 
-    <label> Blog
-      <textarea type="textarea" id="entry" name="entry" rows="4" cols="50"
-        placeholder="write your blog here"></textarea>
-    </label>
+  <label> Blog
+    <textarea type="textarea" id="entry" name="entry" rows="4" cols="50" placeholder="write your blog here"></textarea>
+  </label>
 
-    <button type="submit">Create Blog</button>
+  <button type="submit">Create Blog</button>
 
-    {{#if errorMessage}}
-    <p class="error">{{errorMessage}}</p>
-    {{/if}}
-</div> --}}
+  {{#if errorMessage}}
+  <p class="error">{{errorMessage}}</p>
+  {{/if}}
 
+</form> --}}

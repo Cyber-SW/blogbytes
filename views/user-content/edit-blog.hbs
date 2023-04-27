@@ -1,22 +1,150 @@
+<section id="sidebar">
+  <div class="user-nav-left">
+    <a href="/user-dashboard"><img src="/images/blogbytes-logo-black.png" alt="" /></a>
+  </div>
+
+  <ul class="side-menu top">
+    <li class="active">
+      <a href="/user-dashboard">
+        <i class="bx bxs-dashboard"></i>
+        <span class="text">Dashboard</span>
+      </a>
+    </li>
+    <li>
+      <a href="/user-profile">
+        <i class="bx bxs-shopping-bag-alt"></i>
+        <span class="text">Profile</span>
+      </a>
+    </li>
+    <li>
+      <a href="/create-blog">
+        <i class="bx bxs-doughnut-chart"></i>
+        <span class="text">Create-Blog</span>
+      </a>
+    </li>
+    <li>
+      <a href="/explore">
+        <i class="bx bxs-message-dots"></i>
+        <span class="text">Explore</span>
+      </a>
+    </li>
+
+  </ul>
+  <ul class="side-menu">
+
+    <li>
+      <a href="/user-logout" class="logout">
+        <i class="bx bxs-log-out-circle"></i>
+        <span class="text">Logout</span>
+      </a>
+    </li>
+  </ul>
+</section>
+<!-- SIDEBAR -->
+
+<!-- CONTENT -->
+<section id="content">
+  <!-- NAVBAR -->
+  <nav>
+    <i class="bx bx-menu"></i>
+    <a href="/explore" class="nav-link">Explore Blogs</a>
+    <form action="#">
+
+    </form>
+    <input type="checkbox" id="switch-mode" hidden />
+    <label for="switch-mode" class="switch-mode"></label>
+
+    <a href="/user-profile" class="profile">
+      <img src="/images/profile.svg">
+    </a>
+  </nav>
+  <!-- NAVBAR -->
+
+  <!-- MAIN -->
+  <main>
+    <div class="head-title">
+      <div class="left">
+        <h1>Create Your Own Blog</h1>
+        <ul class="breadcrumb">
+          <li>
+            <a href="#">Dashboard</a>
+          </li>
+          <li><i class="bx bx-chevron-right"></i></li>
+          <li>
+            <a class="active" href="/user-dashboard">Create Your Own Blog</a>
+          </li>
+        </ul>
+      </div>
+      <a href="/user-dashboard" class="btn-download">
+        <i class="bx bx-book"></i>
+        <span class="text">BlogByte</span>
+      </a>
+    </div>
+
+
+
+    <div class="table-data">
+
+      <div class="order">
+        <div class="head">
+          <div>
+            <h2>Edit blog</h2>
+            <form action="/edit-blog/{{blog._id}}" method="POST">
+
+              <label> Edit Title
+                <input value="{{blog.title}}" type="text" name="title" />
+              </label>
+
+              <label for="topic">Edit Topic</label>
+              <select id="topic" name="topic" required>
+                <option value="" disabled selected>{{blog.topic}}</option>
+                {{#each topics}}
+                <option value="{{this}}">{{this}}</option>
+                {{/each}}
+              </select>
+              </label>
+
+              <label> Edit Blogentry
+                <textarea type="textarea" id="entry" name="entry" rows="4" cols="50">{{blog.entry}}</textarea>
+              </label>
+
+              <button type="submit">Save</button>
+
+              {{#if errorMessage}}
+              <p class="error">{{errorMessage}}</p>
+              {{/if}}
+          </div>
+        </div>
+
+      </div>
+
+
+    </div>
+  </main>
+</section>
+
+
+
+
 
 
 <div>
-    <h2>Edit blog</h2>
+  <h2>Edit blog</h2>
   <form action="/edit-blog/{{blog._id}}" method="POST">
 
     <label> Edit Title
-      <input value="{{blog.title}}" type="text" name="title"/>
+      <input value="{{blog.title}}" type="text" name="title" />
     </label>
 
     <label for="topic">Edit Topic</label>
-        <select id="topic" name="topic" required>
-          <option value="" disabled selected>{{blog.topic}}</option>
-            {{#each topics}}
-                <option value="{{this}}">{{this}}</option>
-            {{/each}}
-        </select>
+    <select id="topic" name="topic" required>
+      <option value="" disabled selected>{{blog.topic}}</option>
+      {{#each topics}}
+      <option value="{{this}}">{{this}}</option>
+      {{/each}}
+    </select>
     </label>
-    
+
     <label> Edit Blogentry
       <textarea type="textarea" id="entry" name="entry" rows="4" cols="50">{{blog.entry}}</textarea>
     </label>
@@ -24,6 +152,6 @@
     <button type="submit">Save</button>
 
     {{#if errorMessage}}
-      <p class="error">{{errorMessage}}</p>
+    <p class="error">{{errorMessage}}</p>
     {{/if}}
 </div>
