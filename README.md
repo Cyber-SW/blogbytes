@@ -17,6 +17,6 @@ What we learned:
 - Communicating everything in English since Hussains native language is Pakistani and my is German
 
 
-Thank you for taking the time reading this README!
+Thank you for taking the time to read this README!
 
 Hussain and Shawn
