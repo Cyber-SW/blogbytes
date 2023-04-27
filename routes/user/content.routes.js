@@ -143,7 +143,8 @@ router.get("/explore", isLoggedIn, (req, res, next) => {
 });
 
 router.get("/explore-blog/:id",isLoggedIn,(req,res,next)=>{
-    Blog.findById(req.params.id)
+    const blogId = req.params.id
+    Blog.findById(blogId)
     .populate("creator")
     .then(data=>{
         res.render("user-content/explore-blog",{data})
@@ -153,7 +154,20 @@ router.get("/explore-blog/:id",isLoggedIn,(req,res,next)=>{
 
 router.post("/explore-blog/:id", isLoggedIn, (req, res, next) => {
   const blogId = req.params.id
+  const userId = req.session.currentUser._id
   const { comments } = req.body
+
+  console.log("those are the likes", data.likes)
+  User.findById(userId)
+      .populate("likedBlogs")
+      .then(likedBlogs => {
+        
+        for(let i = 0; i < likedBlogs.length; i++) {
+          if (blogId !== i._id) {
+            data.likes += 1
+          }
+        }
+      })
   
   Blog.findByIdAndUpdate(blogId, { $addToSet: { comments: comments } }, { new: true })
     .then(comments => res.redirect(`/explore-blog/${blogId}`))

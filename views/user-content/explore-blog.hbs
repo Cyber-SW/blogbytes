@@ -134,7 +134,7 @@
 </section>
 
 
-{{!-- <section class="explore-blog">
+<section class="explore-blog" style="text-align:right;">
 
     <div class="explore-blog-info">
 
@@ -150,6 +150,10 @@
         <p class="blog-info-description">
             Description:{{data.entry}}
         </p>
+        <h3>Likes: {{data.likes}}</h3>
+        <form action="/explore-blog/{{data._id}}" method="POST"></form>
+          <button type="submit" class="like-btn">Like</button>
+        </form>
         <h3>Comments</h3>
             {{#each data}}
                 {{#each comments}}
@@ -166,4 +170,4 @@
 
     </div>
 
-</section> --}}
+</section>
