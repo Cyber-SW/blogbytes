@@ -16,5 +16,7 @@ What we learned:
 - Creating a dynamic website by passing different views from the back end to the front end
 - Communicating everything in English since Hussains native language is Pakistani and my is German
 
+
 Thank you for taking the time reading this README!
+
 Hussain and Shawn
