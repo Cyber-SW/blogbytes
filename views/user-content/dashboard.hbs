@@ -97,9 +97,7 @@
           <h3 class="dashboard-display-heading">Most Liked</h3>
 
           <div class="dashboard-tud">
-            <h2 class="dashboard-title"><span
-                class="dashboard-starttext"
-              ></span>{{firstTwoObj.0.title}}</h2>
+            <h2 class="dashboard-title">{{firstTwoObj.0.title}}</h2>
             <h3 class="dashboard-username"><span class="dashboard-starttext">
                 Username:</span>{{firstTwoObj.0.creatorName}}</h3>
             <p class="dashboard-description"><span
@@ -131,9 +129,12 @@
               <button type="submit" class="comment-btn">Create Comment</button>
             </form>
           </div>
-          {{#each firstTwoObj.0.comments}}
-            <p class="blog-comments">Comments: {{this}}</p>
-          {{/each}}
+          <div class="dashboard-comment-reverse">
+
+            {{#each firstTwoObj.0.comments}}
+              <p class="blog-comments">Comments: {{this}}</p>
+            {{/each}}
+          </div>
         </div>
 
       </div>
@@ -175,9 +176,14 @@
               <button type="submit" class="comment-btn">Create Comment</button>
             </form>
           </div>
-          {{#each firstTwoObj.1.comments}}
-            <p class="blog-comments">Comments: {{this}}</p>
-          {{/each}}
+
+          <div class="dashboard-comment-reverse">
+
+            {{#each firstTwoObj.1.comments}}
+              <p class="blog-comments">Comments: {{this}}</p>
+            {{/each}}
+          </div>
+
         </div>
 
       </div>
