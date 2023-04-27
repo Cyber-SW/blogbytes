@@ -96,7 +96,8 @@
 
                     </div>
                     <div class="delete-edit">
-                        <form action="/blog-detail/{{blog._id}}"    method="POST" class="delete-edit-form "><button>Delete</button></form>
+                        <form action="/blog-detail/{{blog._id}}" method="POST" class="delete-edit-form ">
+                            <button>Delete</button></form>
                         <a href="/edit-blog/{{blog._id}}" class="comment-btn">Edit</a>
                     </div>
                     <div class="like-comment">
@@ -109,22 +110,19 @@
                         <h4 class="single">Comments:{{this}}</h4>
                         {{/each}}
                     </div>
+                    <div class="comment-section">
+
+                        <h3>Write a comment:</h3>
+                        <form action="/blog-detail/{{blog._id}}" method="POST">
+                            <textarea type="textarea" id="comments" name="comments" rows="4" cols="50"
+                                placeholder="write your comment here"></textarea>
+
+                            <button type="submit" class="comment-btn">Create Comment</button>
+                        </form>
+                    </div>
                 </div>
 
             </div>
         </div>
     </main>
 </section>
-
-
-<h1>Title: {{blog.title}}</h2>
-
-    <h2>Topic: {{blog.topic}}</h2>
-
-        <h3>Blogentry</h3>
-        <p>{{blog.entry}}</p>
-
-        <form action="/blog-detail/{{blog._id}}" method="POST"><button>Delete</button></form>
-        <a href="/edit-blog/{{blog._id}}">Edit</a>
-
-    

@@ -82,76 +82,54 @@
     </div>
 
 
-
     <div class="table-data">
 
       <div class="order">
         <div class="head">
-          <div>
-            <h2>Edit blog</h2>
-            <form action="/edit-blog/{{blog._id}}" method="POST">
+          <div class="wrapper">
+            <div class="title">
+              Create Your Own Blog
+            </div>
+            <form action="/edit-blog/{{blog._id}}" method="post">
+              <div class="form">
+                <div class="inputfield">
+                  <label>Title:</label>
+                  <input type="text" value="{{blog.title}}" class="input" name="title"
+                    placeholder="give your blog a title" />
+                </div>
+                <div class="inputfield">
 
-              <label> Edit Title
-                <input value="{{blog.title}}" type="text" name="title" />
-              </label>
+                  <label for="topic">Topic:</label>
+                  <select id="topic" name="topic" class="custom_select" required>
+                    <option value="" disabled selected>{{blog.topic}}</option>
+                    {{#each topics}}
+                    <option value="{{this}}">{{this}}</option>
+                    {{/each}}
+                  </select>
+                  </label>
 
-              <label for="topic">Edit Topic</label>
-              <select id="topic" name="topic" required>
-                <option value="" disabled selected>{{blog.topic}}</option>
-                {{#each topics}}
-                <option value="{{this}}">{{this}}</option>
-                {{/each}}
-              </select>
-              </label>
 
-              <label> Edit Blogentry
-                <textarea type="textarea" id="entry" name="entry" rows="4" cols="50">{{blog.entry}}</textarea>
-              </label>
+                </div>
+                <div class="inputfield">
 
-              <button type="submit">Save</button>
+                  <label>
+                    <textarea type="textarea" id="entry" name="entry" rows="30" cols="45"
+                      >{{blog.entry}}</textarea>
+                  </label>
+                </div>
 
-              {{#if errorMessage}}
-              <p class="error">{{errorMessage}}</p>
-              {{/if}}
+                <div class="inputfield">
+                  <button type="submit" class="create-btn">Save</button>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
 
       </div>
 
-
     </div>
+
   </main>
 </section>
 
-
-
-
-
-
-<div>
-  <h2>Edit blog</h2>
-  <form action="/edit-blog/{{blog._id}}" method="POST">
-
-    <label> Edit Title
-      <input value="{{blog.title}}" type="text" name="title" />
-    </label>
-
-    <label for="topic">Edit Topic</label>
-    <select id="topic" name="topic" required>
-      <option value="" disabled selected>{{blog.topic}}</option>
-      {{#each topics}}
-      <option value="{{this}}">{{this}}</option>
-      {{/each}}
-    </select>
-    </label>
-
-    <label> Edit Blogentry
-      <textarea type="textarea" id="entry" name="entry" rows="4" cols="50">{{blog.entry}}</textarea>
-    </label>
-
-    <button type="submit">Save</button>
-
-    {{#if errorMessage}}
-    <p class="error">{{errorMessage}}</p>
-    {{/if}}
-</div>

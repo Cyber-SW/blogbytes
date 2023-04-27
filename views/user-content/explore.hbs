@@ -1,10 +1,7 @@
 <section id="sidebar">
   <div class="user-nav-left">
-      <a href="/user-dashboard"><img
-          src="/images/blogbytes-logo-black.png"
-          alt=""
-        /></a>
-    </div>
+    <a href="/user-dashboard"><img src="/images/blogbytes-logo-black.png" alt="" /></a>
+  </div>
 
   <ul class="side-menu top">
     <li class="active">
@@ -52,14 +49,14 @@
     <i class="bx bx-menu"></i>
     <a href="/create-blog" class="nav-link">Create Your Own Blog</a>
     <form action="#">
-      
+
     </form>
     <input type="checkbox" id="switch-mode" hidden />
     <label for="switch-mode" class="switch-mode"></label>
 
     <a href="/user-profile" class="profile">
-				<img src="/images/profile.svg">
-			</a>
+      <img src="/images/profile.svg">
+    </a>
   </nav>
   <!-- NAVBAR -->
 
@@ -78,21 +75,21 @@
           </li>
         </ul>
       </div>
-      
+
     </div>
 
-    
+
 
     <div class="table-data">
       {{#each data}}
       <div class="order">
         <div class="head">
-          
+
 
           <div class="short-blog">
-        <a href="/explore-blog/{{this._id}}" class="short-blog-link">
-            <div class="short-blog-div">
-                
+            <a href="/explore-blog/{{this._id}}" class="short-blog-link">
+              <div class="short-blog-div">
+
 
                 <h3 class="blog-topic">Topic:{{this.topic}}</h3>
                 <h3 class="blog-name">Title:{{this.title}}</h3>
@@ -100,43 +97,15 @@
                 <h3 class="blog-likes">Likes:{{this.likes}}</h3>
 
                 {{!-- <a href="/explore-blog/{{this._id}}">Read In Detail</a> --}}
-            </div>
-        </a>
-    </div>
-    {{/each }}
+              </div>
+            </a>
+          </div>
+          {{/each }}
         </div>
 
       </div>
 
-      
+
     </div>
   </main>
 </section>
-
-
-
-<section class="explore">
-
-    <h2 class="explore-heading">
-        Explore More Blogs
-    </h2>
-
-    {{#each data}}
-
-
-    <div class="short-blog">
-        <a href="/explore-blog/{{this._id}}" class="short-blog-link">
-            <div class="short-blog-div">
-                
-
-                <h3 class="blog-topic">Topic:{{this.topic}}</h3>
-                <h3 class="blog-name">Title:{{this.title}}</h3>
-                <h3 class="blog-username">Username:{{this.creator.username}}</h3>
-                <h3 class="blog-likes">Likes:{{this.likes}}</h3>
-            </div>
-        </a>
-    </div>
-
-    {{/each }}
-
-</section> 

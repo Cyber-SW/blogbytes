@@ -1,10 +1,7 @@
 <section id="sidebar">
   <div class="user-nav-left">
-      <a href="/user-dashboard"><img
-          src="/images/blogbytes-logo-black.png"
-          alt=""
-        /></a>
-    </div>
+    <a href="/user-dashboard"><img src="/images/blogbytes-logo-black.png" alt="" /></a>
+  </div>
 
   <ul class="side-menu top">
     <li class="active">
@@ -54,17 +51,15 @@
     <form action="#">
       <div class="form-input">
         <input type="search" placeholder="Search..." />
-        <button type="submit" class="search-btn"><i
-            class="bx bx-search"
-          ></i></button>
+        <button type="submit" class="search-btn"><i class="bx bx-search"></i></button>
       </div>
     </form>
     <input type="checkbox" id="switch-mode" hidden />
     <label for="switch-mode" class="switch-mode"></label>
 
     <a href="/profile" class="profile">
-				<img src="/images/profile.svg">
-			</a>
+      <img src="/images/profile.svg">
+    </a>
   </nav>
   <!-- NAVBAR -->
 
@@ -72,14 +67,14 @@
   <main>
     <div class="head-title">
       <div class="left">
-        <h1>Dashboard</h1>
+        <h1>Explore</h1>
         <ul class="breadcrumb">
           <li>
             <a href="#">Dashboard</a>
           </li>
           <li><i class="bx bx-chevron-right"></i></li>
           <li>
-            <a class="active" href="/user-dashboard">Home</a>
+            <a class="active" href="/Explore">Explore Blog</a>
           </li>
         </ul>
       </div>
@@ -89,87 +84,78 @@
       </a>
     </div>
 
-    {{!-- <ul class="box-info">
-				<li>
-					<i class='bx bxs-calendar-check' ></i>
-					<span class="text">
-						<h3>1020</h3>
-						<p>New Order</p>
-					</span>
-				</li>
-				<li>
-					<i class='bx bxs-group' ></i>
-					<span class="text">
-						<h3>2834</h3>
-						<p>Visitors</p>
-					</span>
-				</li>
-				<li>
-					<i class='bx bxs-dollar-circle' ></i>
-					<span class="text">
-						<h3>$2543</h3>
-						<p>Total Sales</p>
-					</span>
-				</li>
-			</ul> --}}
+
 
     <div class="table-data">
 
       <div class="order">
         <div class="head">
-          <h3>Most Liked</h3>
+          <div class="dashboard-tud">
+            <h2 class="dashboard-title">
+              Title:{{data.title}}
+            </h2>
+            <h3 class="dashboard-username">
+              <span class="dashboard-starttext">Written by:</span>
+              {{data.creator.username}}
+            </h3>
+            <h3 class="dashboard-username">
+              topic:{{data.topic}}
+            </h3>
+            <p class="dashboard-description">
+              Description:{{data.entry}}
+            </p>
+          </div>
+
+          <div class="like-comment">
+
+            <p>Likes: {{data.likes}}</p>
+
+            <p class="">Total Comments:{{data.totalComments}}</p>
+          </div>
+
+          <form action="/explore-blog-like/{{data._id}}" method="POST">
+            <button type="submit" class="comment-btn">Like</button>
+          </form>
+
+
+          <div class="comment-section">
+
+            <h3>Write a comment:</h3>
+            <form
+              action="/explore-blog/{{data._id}}"
+              method="POST"
+            >
+              <textarea
+                type="textarea"
+                id="comments"
+                name="comments"
+                rows="4"
+                cols="50"
+                placeholder="write your comment here"
+              ></textarea>
+
+              <button type="submit" class="comment-btn">Create Comment</button>
+            </form>
+          </div >
+
+
+          <div class="dashboard-comment-reverse">
+          {{#each data}}
+          {{#each comments}}
+          <p class="blog-comments">Comments:{{this}}</p>
+          {{/each}}
+          {{/each}}
+
+          </div>
+
+
         </div>
 
       </div>
 
-      <div class="todo">
-        <div class="head">
-          <h3>Second Most Liked</h3>
+    </div>
 
-        </div>
 
-      </div>
     </div>
   </main>
-</section>
-
-
-<section class="explore-blog" style="text-align:right;">
-
-    <div class="explore-blog-info">
-
-        <h2 class="blog-info-title">
-            Title:{{data.title}}
-        </h2>
-        <h4 class="blog-info-username">
-            Written by:{{data.creator.username}}
-        </h4>
-        <h4 class="blog-info-topic">
-            topic:{{data.topic}}
-        </h4>
-        <p class="blog-info-description">
-            Description:{{data.entry}}
-        </p>
-
-        <h3>Likes: {{data.likes}}</h3>
-        <form action="/explore-blog-like/{{data._id}}" method="POST">
-          <button type="submit" class="like-btn">Like</button>
-        </form>
-        
-        <h3>Comments</h3>
-            {{#each data}}
-                {{#each comments}}
-                    <p>{{this}}</p>
-                {{/each}}
-            {{/each}}
-        
-        <h3>Write a comment:</h3>
-            <form action="/explore-blog/{{data._id}}" method="POST">
-                <textarea type="textarea" id="comments" name="comments" rows="4" cols="50" placeholder="write your comment here"></textarea>
-
-            <button type="submit">Create Comment</button>
-        </form>
-
-    </div>
-
 </section>
