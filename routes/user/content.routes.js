@@ -1,4 +1,5 @@
 const express = require("express");
+const mongoose = require("mongoose");
 const router = express.Router();
 const Blog = require("../../models/user/Blog.model");
 const User = require("../../models/user/User.model");
@@ -99,6 +100,15 @@ router.get("/blog-detail/:id", (req, res, next) => {
     .catch(err => next(err))
 })
 
+router.post("/blog-detail/:id", isLoggedIn, (req, res, next) => {
+  const blogId = req.params.id
+  const { comments } = req.body
+  
+  Blog.findByIdAndUpdate(blogId, { $addToSet: { comments: comments } }, { new: true })
+    .then(comments => res.redirect(`/blog-detail/${blogId}`))
+    .catch(err => next(err))
+})
+
 //delete blog routes
 router.post("/blog-detail/:id", isLoggedIn, (req, res, next) => {
   const blogId = req.params.id
@@ -154,24 +164,43 @@ router.get("/explore-blog/:id",isLoggedIn,(req,res,next)=>{
 
 router.post("/explore-blog/:id", isLoggedIn, (req, res, next) => {
   const blogId = req.params.id
-  const userId = req.session.currentUser._id
   const { comments } = req.body
-
-  console.log("those are the likes", data.likes)
-  User.findById(userId)
-      .populate("likedBlogs")
-      .then(likedBlogs => {
-        
-        for(let i = 0; i < likedBlogs.length; i++) {
-          if (blogId !== i._id) {
-            data.likes += 1
-          }
-        }
-      })
   
   Blog.findByIdAndUpdate(blogId, { $addToSet: { comments: comments } }, { new: true })
-    .then(comments => res.redirect(`/explore-blog/${blogId}`))
+    .then(() => res.redirect(`/explore-blog/${blogId}`))
     .catch(err => next(err))
+})
+
+//like routes
+router.post("/explore-blog-like/:id", (req, res, next) => {
+  const userId = req.session.currentUser._id
+  const blogId = req.params.id
+  let likeStatus = false
+
+  User.findById(userId)
+      .then(user => {
+        for (let i = 0; i < user.likedBlogs.length; i++) {
+          if (blogId === user.likedBlogs[i].toString()) {
+            likeStatus = true
+          } 
+        }
+        console.log(likeStatus)
+        if (likeStatus) {
+          User.findByIdAndUpdate(userId, { $pull: { likedBlogs: blogId }}) 
+          .then(() => {
+            Blog.findByIdAndUpdate(blogId, { $inc: { likes: -1 } }, { new: true })
+            .then(() => res.redirect(`/explore-blog/${blogId}`))
+            .catch(err => next(err))
+          })
+        } else {
+          User.findByIdAndUpdate(userId, { $addToSet: { likedBlogs: blogId }}) 
+          .then(() => {
+            Blog.findByIdAndUpdate(blogId, { $inc: { likes: 1 } }, { new: true })
+            .then(() => res.redirect(`/explore-blog/${blogId}`))
+            .catch(err => next(err))
+          }) 
+        }
+      })
 })
 
 //user create routes

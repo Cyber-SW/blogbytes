@@ -23,7 +23,6 @@ const userSchema = new Schema(
     likedBlogs: [{
       type: Schema.Types.ObjectId,
       ref: "Blog"
-
     }]
   },
   {
