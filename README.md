@@ -1,6 +1,6 @@
 # blogbytes
 
-In this team project my partner Muhammad Hussain (https://github.com/MuhammadHussain1701) and me Shawn Wolter worked together to create a blogging website where users can write, read, create, update, delete, like, comment, and explore blogs. The timeframe for this project was 6 days.
+In this team project my partner Muhammad Hussain (https://github.com/MuhammadHussain1701) and me Shawn Wolter (https://github.com/Cyber-SW) worked together to create a blogging website where users can write, read, create, update, delete, like, comment, and explore blogs. The timeframe for this project was 6 days.
 
 We used HTML5, CSS3, JavaScript (ES6), Handlebars, MongoDB, Express, and Cyclic for the deployment.
 
