@@ -1,46 +1,54 @@
 <html lang="en">
 
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>{{appTitle}}</title>
-    <!-- Boxicons -->
-	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
-    {{!-- CSS --}}
-    <link rel="stylesheet" href="/stylesheets/style.css" />
-    <link rel="stylesheet" href="/stylesheets/media.css">
-    {{! Google Font }}
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&family=Poppins:ital@1&display=swap"
-      rel="stylesheet"
-    />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>{{appTitle}}</title>
+  <!-- Boxicons -->
+  <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+  {{!-- CSS --}}
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+  <link rel="stylesheet" href="/stylesheets/media.css">
+  {{! Google Font }}
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&family=Poppins:ital@1&display=swap"
+    rel="stylesheet" />
 
-    {{! FONT AWESOME }}
-    <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+  {{! FONT AWESOME }}
+  <script src="https://kit.fontawesome.com/a81368914c.js"></script>
 
-    <!-- Link Swiper's CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"/>
+  <!-- Link Swiper's CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
 
-  </head>
+</head>
 
-  <body>
-    <div id="load" class="active">
-      <div>E</div>
-      <div>T</div>
-      <div>Y</div>
-      <div>B</div>
-      <div>G</div>
-      <div>O</div>
-      <div>L</div>
-      <div>B</div>
-    </div>
-    {{{body}}}
-    <!-- Swiper JS -->
-  <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-    <script src="/js/script.js"></script>
-  </body>
+<body>
+  <div id="load" class="active">
+    <div>E</div>
+    <div>T</div>
+    <div>Y</div>
+    <div>B</div>
+    <div>G</div>
+    <div>O</div>
+    <div>L</div>
+    <div>B</div>
+  </div>
+  {{{body}}}
+  
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <script src="/js/script.js"></script>
+
+  <script>
+    var typingEffect = new Typed(".multiText", {
+      strings: ["PUBLISH", "IDEAS"],
+      loop: true,
+      typeSpeed: 100,
+      backSpeed: 80,
+      backDelay: 1500
+    })
+  </script>
+</body>
 
 </html>

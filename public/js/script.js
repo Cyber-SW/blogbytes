@@ -1,19 +1,4 @@
-var swiper = new Swiper(".mySwiper", {
-	effect: "coverflow",
-	grabCursor: true,
-	centeredSlides: true,
-	slidesPerView: "auto",
-	coverflowEffect: {
-	  rotate: 0,
-	  stretch: 0,
-	  depth: 300,
-	  modifier: 1,
-	  slideShadows: false,
-	},
-	pagination: {
-	  el: ".swiper-pagination",
-	},
-  });
+
 
 const inputs = document.querySelectorAll(".input");
 
@@ -122,4 +107,12 @@ switchMode.addEventListener('change', function () {
 	} else {
 		document.body.classList.remove('dark');
 	}
+})
+
+var typingEffect=new Typed(".multiText",{
+	strings:["PUBLISH","IDEAS"],
+	loop:true,
+	typeSpeed:100,
+	backSpeed:80,
+	backDelay:1500
 })
