@@ -1,4 +1,4 @@
-<section id="sidebar">
+<section id="sidebar" >
     <div class="user-nav-left">
         <a href="/user-dashboard"><img src="/images/blogbytes-logo-black.png" alt="" /></a>
     </div>
@@ -43,7 +43,7 @@
 <!-- SIDEBAR -->
 
 <!-- CONTENT -->
-<section id="content">
+<section id="content" class="anim">
     <!-- NAVBAR -->
     <nav>
         <i class="bx bx-menu"></i>
@@ -102,14 +102,10 @@
                     </div>
                     <div class="like-comment">
 
-                        <p class="">Total Likes:{{firstTwoObj.0.likes}}</p>
-                        <p class="">Total Comments:{{firstTwoObj.0.totalComments}}</p>
+                        <p class="">Total Likes:{{totalLikes}}</p>
+                        <p class="">Total Comments:{{totalComments}}</p>
                     </div>
-                    <div class="comment-section">
-                        {{#each blog.comments}}
-                        <h4 class="single">Comments:{{this}}</h4>
-                        {{/each}}
-                    </div>
+                    
                     <div class="comment-section">
 
                         <h3>Write a comment:</h3>
@@ -119,6 +115,11 @@
 
                             <button type="submit" class="comment-btn">Create Comment</button>
                         </form>
+                    </div>
+                    <div class="comment-section">
+                        {{#each blog.comments}}
+                        <h4 class="single">{{this}}</h4>
+                        {{/each}}
                     </div>
                 </div>
 

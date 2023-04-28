@@ -1,5 +1,5 @@
 <!-- SIDEBAR -->
-<section id="sidebar">
+<section id="sidebar" class="anim">
   <div class="user-nav-left">
     <a href="/user-dashboard"><img
         src="/images/blogbytes-logo-black.png"
@@ -47,7 +47,7 @@
 <!-- SIDEBAR -->
 
 <!-- CONTENT -->
-<section id="content">
+<section id="content" class="anim">
   <!-- NAVBAR -->
   <nav>
     <i class="bx bx-menu"></i>
@@ -130,9 +130,9 @@
             </form>
           </div>
           <div class="dashboard-comment-reverse">
-
+            {{!-- firstTwoObj.0.comments --}}
             {{#each firstTwoObj.0.comments}}
-              <p class="blog-comments">Comments: {{this}}</p>
+              <p class="blog-comments">{{this}}</p>
             {{/each}}
           </div>
         </div>
@@ -180,7 +180,7 @@
           <div class="dashboard-comment-reverse">
 
             {{#each firstTwoObj.1.comments}}
-              <p class="blog-comments">Comments: {{this}}</p>
+              <p class="blog-comments">{{this}}</p>
             {{/each}}
           </div>
 

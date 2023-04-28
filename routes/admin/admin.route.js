@@ -45,7 +45,7 @@ router.get("/admin/profile",isLoggedIn, (req, res,next) => {
   User.find()
   .then(data=>{
     // console.log(data)
-    res.render("admin/admin-profile", { userInSession: req.session.currentUser,data });
+    res.render("admin/admin-profile", { userInSession: req.session.currentUser,data,totalUsers:data.length });
   })
   .catch(err=>next(arr))
   
@@ -54,11 +54,37 @@ router.get("/admin/profile",isLoggedIn, (req, res,next) => {
 router.get("/admin/profile/:id",isLoggedIn,(req,res,next)=>{
   const id=req.params.id
 
-  User.findById(id)
-  .then(data=>{
-    res.render("admin/admin-user",{userData:data})
-  })
-  .catch(err=>next(err))
+  // User.findById(id)
+  // .then(data=>{
+  //   res.render("admin/admin-user",{userData:data})
+  // })
+  // .catch(err=>next(err))
+
+  const user = req.session.currentUser.username
+    Blog.find()
+    .populate("creator")
+    .then(data=>{
+        let userData=[]
+        let totalLikes=0
+        let totalComments=0
+
+        data.filter((someData)=>{
+
+          if(id===someData.creator.id)
+            {
+                userData.push(someData)
+            }
+        })
+        for(let i=0;i<userData.length;i++)
+        {
+            totalLikes+=userData[i].likes
+            totalComments+=userData[i].comments.length
+        }
+     
+
+        res.render("admin/admin-user",{userData:userData,totalLikes:totalLikes,totalComments:totalComments, username: user});
+    })
+    .catch(err => next(err))
 })
 
 router.get("/admin/profile/delete/:id",isLoggedIn,(req,res,next)=>{
