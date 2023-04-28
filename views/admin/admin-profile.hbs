@@ -1,67 +1,103 @@
-{{!-- <nav class="navbar">
-
-  <div class="nav-container">
-
-    <div class="nav-left">
-      <a href="/"><img src="/images/logo.png" alt=""></a>
-      <p class="nav-heading">BlogByte.</p>
-    </div>
-
-    <div class="nav-right">
-      <form id="logout-form" class="nav-btn log-in-btn" action="/admin/profile/logout" method="POST">
-        <button>Logout</button>
-      </form>
-      <a href="/user-login" class="nav-btn log-in-btn">Log In</a>
-    </div>
-
+<!-- SIDEBAR -->
+<section id="sidebar">
+  <div class="user-nav-left">
+    <a href="/user-dashboard"><img src="/images/blogbytes-logo-black.png" alt="" /></a>
   </div>
-  <hr>
-<nav> --}}
 
-<section>
+  <ul class="side-menu top">
+    <li class="active">
+      <a href="/admin/profile">
+        <i class="bx bxs-dashboard"></i>
+        <span class="text">Dashboard</span>
+      </a>
+    </li>
 
-  <nav class="navbar">
+  </ul>
+  <ul class="side-menu">
 
-    <div class="nav-container">
+    <li>
+      <a href="/user-logout" class="logout">
+        <i class="bx bxs-log-out-circle"></i>
+        <span class="text">Logout</span>
+      </a>
+    </li>
+  </ul>
+</section>
+<!-- SIDEBAR -->
 
-      <div class="nav-left">
-        <a href="/"><img src="/images/blogbytes-logo.png" alt="" /></a>
-        {{!-- <p class="nav-heading">BlogByte.</p> --}}
+<!-- CONTENT -->
+<section id="content">
+  <!-- NAVBAR -->
+  <nav>
+    <i class="bx bx-menu"></i>
+    <form action="#">
+      <div class="form-input">
+        <input type="search" placeholder="Search..." />
+        <button type="submit" class="search-btn"><i class="bx bx-search"></i></button>
       </div>
+    </form>
+    <input type="checkbox" id="switch-mode" hidden />
+    <label for="switch-mode" class="switch-mode"></label>
 
-      <div class="nav-right">
-        <a href="#" class="nav-btn hide">About</a>
-        <a href="#" class="nav-btn hide">Explore</a>
-        <a href="#" class="nav-btn hide">Contact Us</a>
-        <a href="/admin" class="nav-btn log-in-btn hide">Admin</a>
-        <a href="/user-logout" class="nav-btn log-in-btn">Log Out</a>
+    <a href="/user-profile" class="profile">
+      <img src="/images/profile.svg" />
+    </a>
+  </nav>
+  <!-- NAVBAR -->
+
+  <!-- MAIN -->
+  <main>
+    <div class="head-title">
+      <div class="left">
+        <h1>Dashboard</h1>
+        <ul class="breadcrumb">
+          <li>
+            <a href="#">Dashboard</a>
+          </li>
+          <li><i class="bx bx-chevron-right"></i></li>
+          <li>
+            <a class="active" href="/admin/profile">Home</a>
+          </li>
+        </ul>
       </div>
-
+      <a href="#" class="btn-download">
+        <i class="bx bx-user"></i>
+        <span class="text">Welcome {{userInSession.fullname}}</span>
+      </a>
     </div>
 
-  </nav>
+    <ul class="box-info">
+      <li>
+        <i class="bx bxs-user"></i>
+        <span class="text">
+          <h3>{{totalUsers}}</h3>
+          <p>Total Users</p>
+        </span>
+      </li>
+      
+
+    </ul>
+
+    <div class="table-data">
+
+      <div class="order">
+            {{#each data}}
+        <div class="head">
+
+          <div class="short-blog-div">
+
+            <h2><a class="display-user" href="/admin/profile/{{this._id}}">{{this.username}}</a></h2>
+
+            <a class="display-user comment-btn" href="/admin/profile/delete/{{this._id}}">Delete This Profile</a>
+          </div>
 
 
-<h2 class="admin-headline">ADMIN PORTAL</h2>
-</nav class="display-user-container">
+        </div>
+            {{/each}}
 
-{{#if userInSession}}
-
-  <h2 class="greet-admin">Hello Admin, {{userInSession.fullname}}</h2>
-
-{{else}}
-  <h2>Still not logged in user,Sorry!</h2>
-
-{{/if}}
-
-{{#each data}}
-
-  <h2><a class="display-user" href="/admin/profile/{{this._id}}">{{this.username}}</a></h2>
-
-  <a class="display-user" href="/admin/profile/delete/{{this._id}}">Delete This Profile</a>
-{{/each}}
+      </div>
 
 
-</nav>
-
+    </div>
+  </main>
 </section>

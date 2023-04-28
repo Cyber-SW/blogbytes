@@ -34,7 +34,8 @@ router.get("/user-dashboard", (req, res, next) => {
             title:data[first].title,
             description:data[first].entry,
             likes:data[first].likes,
-            comments:data[first].comments
+            comments:data[first].comments,
+            totalComments:data[first].comments.length
         },
         {
             blogId:data[second]._id,
@@ -42,7 +43,8 @@ router.get("/user-dashboard", (req, res, next) => {
             title:data[second].title,
             description:data[second].entry,
             likes:data[second].likes,
-            comments:data[second].comments
+            comments:data[second].comments,
+            totalComments:data[first].comments.length
         }
       ]
       res.render("user-content/dashboard", { username: username,firstTwoObj});
@@ -54,8 +56,8 @@ router.get("/user-dashboard", (req, res, next) => {
 router.post("/user-dashboard/:id", isLoggedIn, (req, res, next) => {
   const blogId = req.params.id
   const { comments } = req.body
-  
-  Blog.findByIdAndUpdate(blogId, { $addToSet: { comments: comments } }, { new: true })
+  const commentsWithName=`${req.session.currentUser.username}:${comments}`
+  Blog.findByIdAndUpdate(blogId, { $addToSet: { comments: commentsWithName } }, { new: true })
     .then(comments => res.redirect("/user-dashboard"))
     .catch(err => next(err))
 })
@@ -68,22 +70,24 @@ router.get("/user-profile", isLoggedIn, (req, res, next) => {
     .then(data=>{
         let userData=[]
         let totalLikes=0
-        data.filter((user)=>{
-            if(req.session.currentUser.username===user.creator.username)
+        let totalComments=0
+
+        data.filter((someData)=>{
+            console.log(someData.creator.username)  
+          if(user===someData.creator.username)
             {
-                userData.push(user)
+                userData.push(someData)
+                // console.log("found it")
             }
         })
         for(let i=0;i<userData.length;i++)
         {
             totalLikes+=userData[i].likes
+            totalComments+=userData[i].comments.length
         }
-        // userData.forEach((data,index)=>{
-        //     console.log(data[index])
-        //     // totalLikes=totalLikes+data.likes
-        // })
+     
 
-        res.render("user-content/profile",{userData:userData,totalLikes:totalLikes, username: user});
+        res.render("user-content/profile",{userData:userData,totalLikes:totalLikes,totalComments:totalComments, username: user});
     })
     .catch(err => next(err))
 });
@@ -95,7 +99,10 @@ router.get("/blog-detail/:id", (req, res, next) => {
 
   Blog.findById(blogId)
     .then(blogToView => {
-      res.render("user-content/blog-detail", { blog: blogToView, username: username })
+      let totalLikes=blogToView.likes
+      let totalComments=blogToView.comments.length
+
+      res.render("user-content/blog-detail", { blog: blogToView, username: username,totalLikes,totalComments})
     })
     .catch(err => next(err))
 })
@@ -103,8 +110,8 @@ router.get("/blog-detail/:id", (req, res, next) => {
 router.post("/blog-detail/:id", isLoggedIn, (req, res, next) => {
   const blogId = req.params.id
   const { comments } = req.body
-  
-  Blog.findByIdAndUpdate(blogId, { $addToSet: { comments: comments } }, { new: true })
+  const commentsWithName=`${req.session.currentUser.username}:${comments}`
+  Blog.findByIdAndUpdate(blogId, { $addToSet: { comments: commentsWithName } }, { new: true })
     .then(comments => res.redirect(`/blog-detail/${blogId}`))
     .catch(err => next(err))
 })
@@ -157,7 +164,8 @@ router.get("/explore-blog/:id",isLoggedIn,(req,res,next)=>{
     Blog.findById(blogId)
     .populate("creator")
     .then(data=>{
-        res.render("user-content/explore-blog",{data})
+      let totalComments=data.comments.length
+        res.render("user-content/explore-blog",{data,totalComments:totalComments})
     })
     .catch(err => next(err))
 })
@@ -165,8 +173,8 @@ router.get("/explore-blog/:id",isLoggedIn,(req,res,next)=>{
 router.post("/explore-blog/:id", isLoggedIn, (req, res, next) => {
   const blogId = req.params.id
   const { comments } = req.body
-  
-  Blog.findByIdAndUpdate(blogId, { $addToSet: { comments: comments } }, { new: true })
+  const commentsWithName=`${req.session.currentUser.username}:${comments}`
+  Blog.findByIdAndUpdate(blogId, { $addToSet: { comments: commentsWithName } }, { new: true })
     .then(() => res.redirect(`/explore-blog/${blogId}`))
     .catch(err => next(err))
 })

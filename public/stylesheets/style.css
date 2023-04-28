@@ -87,8 +87,12 @@ a {
   width: 100%;
   height: 100vh;
   /* backgro.und: black; */
-  background: linear-gradient(356deg, #1164a6, #bce2ff);
+  /* background: linear-gradient(356deg, #1164a6, #bce2ff); */
   /* background: linear-gradient(210deg,#1164a6, #212729); */
+  background: url(/images/index-img.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  
 }
 /* NAVBAR */
 
@@ -122,14 +126,14 @@ a {
     margin: 9px 30px;
     padding: 12px 10px;
     border-radius: 2px;
-    color: white;
+    color: #1164a6;
     font-size: 15px;
 }
 
 .nav-btn::after {
   content: "";
   position: absolute;
-  background-color: #1164a6;
+  background-color: #ffffff;
   height: 3px;
   width: 0;
   left: 0;
@@ -137,7 +141,7 @@ a {
   transition: 0.4s ease-in;
 }
 .nav-btn:hover {
-  color: #ffffff;
+  color: var(--blue);
   text-decoration: none;
 }
 .nav-btn:hover::after {
@@ -1094,7 +1098,7 @@ a:hover {
 .comment-section{
   width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   flex-wrap: wrap;
   background: #ebebeb;
   padding: 8px;
